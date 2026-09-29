@@ -1,0 +1,45 @@
+name: 'Release Notes AI'
+
+on:
+  release:
+    types: [published]
+
+  # Optional: also run on workflow_dispatch for testing
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  generate-notes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate AI Release Notes
+        uses: aura-fyll/release-notes-ai@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          openrouter_api_key: ${{ secrets.OPENROUTER_API_KEY }}
+
+          # ---- Free tier settings (defaults, ignored if Pro) ----
+          # Free tier: English, professional tone, budget model, last 25 commits
+          # Pro tier:  overrides below to full features
+
+          # ---- Pro tier (leave empty for free) ----
+          pro_license_key: ${{ secrets.RELEASE_NOTES_PRO_KEY }}
+          composio_api_key: ${{ secrets.COMPOSIO_API_KEY }}
+          broadcast_channels: 'slack,discord'
+
+          # ---- Pro-only inputs (ignored on free tier) ----
+          openrouter_model: 'anthropic/claude-3.5-sonnet'
+          language: 'en'
+          tone: 'professional'
+        env:
+          # Required for Pro license validation
+          POLAR_PRODUCT_ID: ${{ secrets.POLAR_PRODUCT_ID }}
+          # Required for Pro broadcast
+          COMPOSIO_ACCOUNT_ID: ${{ secrets.COMPOSIO_ACCOUNT_ID }}
+          # Optional broadcast targets
+          SLACK_CHANNEL: '#releases'
+          DISCORD_CHANNEL_ID: ${{ secrets.DISCORD_CHANNEL_ID }}
+          EMAIL_TO: ${{ secrets.RELEASE_EMAIL_TO }}

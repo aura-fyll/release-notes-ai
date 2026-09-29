@@ -1,0 +1,43 @@
+name: 'Release Notes AI'
+author: 'aura-fyll'
+description: 'Generate polished, human-readable release notes from your commits & PRs using AI. Free tier updates the GitHub release. Pro tier ($9/mo) also broadcasts to Slack, Discord, Email, and Twitter via Composio.'
+
+branding:
+  icon: 'feather'
+  color: 'purple'
+
+inputs:
+  github_token:
+    description: 'GitHub token for API access. Use {{ secrets.GITHUB_TOKEN }} or a PAT for cross-repo access.'
+    required: true
+  openrouter_api_key:
+    description: 'OpenRouter API key. Get one free at https://openrouter.ai/keys'
+    required: true
+  openrouter_model:
+    description: 'OpenRouter model to use. Default: anthropic/claude-3.5-sonnet (cheap fallback: openrouter/auto)'
+    required: false
+    default: 'anthropic/claude-3.5-sonnet'
+  pro_license_key:
+    description: 'Gumroad license key for Pro tier (cross-channel broadcasting). Leave empty for free tier.'
+    required: false
+    default: ''
+  composio_api_key:
+    description: 'Composio API key (only needed for Pro tier). Get one at https://composio.dev'
+    required: false
+    default: ''
+  broadcast_channels:
+    description: 'Composio channels to broadcast to (Pro only). Comma-separated: slack,discord,email,twitter'
+    required: false
+    default: 'slack'
+  language:
+    description: 'Language for release notes. Default: en (en, es, fr, de, ja, zh, hi supported)'
+    required: false
+    default: 'en'
+  tone:
+    description: 'Tone: professional, casual, technical, or playful'
+    required: false
+    default: 'professional'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
