@@ -1,6 +1,6 @@
 name: 'Release Notes AI'
 author: 'aura-fyll'
-description: 'Generate polished, human-readable release notes from your commits & PRs using AI. Free tier updates the GitHub release. Pro tier ($5/mo) also broadcasts to Slack, Discord, Email, and Twitter via Composio.'
+description: 'AI release notes from commits & PRs. Free GitHub updates; Pro broadcasts to Slack, Discord, Email & Twitter for $5/mo.'
 
 branding:
   icon: 'feather'
