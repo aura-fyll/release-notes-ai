@@ -11,7 +11,7 @@
 //
 // License validation API: https://docs.polar.sh/api/products/license-keys/validate
 
-const POLAR_PRODUCT_ID = process.env.POLAR_PRODUCT_ID || 'YOUR_POLAR_PRODUCT_ID';
+const POLAR_PRODUCT_ID = process.env.POLAR_PRODUCT_ID || '79f4e3a7-6ff9-4ee9-9d56-a423dc646587';
 
 /**
  * Validate a Polar.sh license key.
@@ -28,7 +28,7 @@ async function validateLicense(licenseKey) {
       body: JSON.stringify({
         key: licenseKey.trim(),
         // Optionally pin to your product to prevent cross-product key reuse
-        product_id: POLAR_PRODUCT_ID !== 'YOUR_POLAR_PRODUCT_ID' ? POLAR_PRODUCT_ID : undefined,
+        product_id: POLAR_PRODUCT_ID,
       }),
     });
     if (!res.ok) {
