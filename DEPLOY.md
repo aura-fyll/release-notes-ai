@@ -67,7 +67,7 @@ The `v1` tag is what users reference as `uses: aura-fyll/release-notes-ai@v1`. Y
 2. Click the **"Actions"** tab → you'll see a banner: **"Publish this Action to the GitHub Marketplace"** → click it.
 3. Fill in:
    - **Category:** Productivity (or Developer Tools)
-   - **Description:** "AI-powered release notes from your commits & PRs. Free tier writes a short summary. Pro tier ($9/mo) adds full structured notes + Slack/Discord/Email/Twitter broadcast."
+   - **Description:** "AI-powered release notes from your commits & PRs. Free tier writes a short summary. Pro tier ($5/mo) adds full structured notes + Slack/Discord/Email/Twitter broadcast."
    - **Logo:** Upload a 200x200 icon (purple feather works, or any free icon maker)
    - **Pricing:** Free (Marketplace doesn't support paid Actions directly — your revenue comes from Polar Pro upsell)
 4. Click **Publish**. Live in minutes.
@@ -84,17 +84,26 @@ The `v1` tag is what users reference as `uses: aura-fyll/release-notes-ai@v1`. Y
    - **Name:** Release Notes AI — Pro
    - **Type:** Digital (subscription)
    - **Description:** "Unlock full structured release notes + cross-channel broadcasting for the Release Notes AI GitHub Action."
-   - **Pricing:** $9/month (also create a $79/year variant)
+   - **Pricing:** $5/month (also create a $49/year variant)
    - **License keys:** Enable (Polar generates a unique key per purchase automatically)
 4. Save. Copy the **Product ID** from the URL (looks like `uuid-here`) — you'll need this.
 
-### 5b. Get Your Polar Checkout Link
+### 5b. Polar Checkout Link
 
-In the Polar product page, click **"Get checkout link"** → copy it. It looks like `https://pol.sh/r/your-product-slug`. Replace `https://pol.sh/r/your-product` everywhere in the repo with this real link.
+The repo is already wired to use this checkout URL (baked into `index.js`, `README.md`, `src/pro.js`):
+
+```
+https://polar.sh/checkout?product_id=79f4e3a7-6ff9-4ee9-9d56-a423dc646587
+```
+
+If Polar generates a different checkout URL for your product (sometimes they use a slug-based form like `https://polar.sh/aura-fyll/products/release-notes-ai-pro`), replace the URL across the repo:
 
 ```bash
-find . -type f -not -path './node_modules/*' -not -path './.git/*' \
-  -exec sed -i 's|https://pol.sh/r/your-product|YOUR_REAL_POLAR_LINK|g' {} +
+find . -type f \( -name '*.md' -o -name '*.js' -o -name '*.yml' \) \
+  -not -path './node_modules/*' -not -path './dist/*' -not -path './.git/*' \
+  -exec sed -i 's|https://polar.sh/checkout?product_id=79f4e3a7-6ff9-4ee9-9d56-a423dc646587|YOUR_REAL_POLAR_LINK|g' {} +
+npm run build  # rebuild dist/
+git add -A && git commit -m "chore: update Polar checkout URL"
 ```
 
 ### 5c. Configure the License Validation
@@ -140,12 +149,12 @@ In Polar dashboard → Product → **Post-purchase page** → set the message to
 
 ## Step 8 — First $100 Milestone
 
-Realistic math with nerfed free tier (4% conversion):
+Realistic math with nerfed free tier (5% conversion at $5/mo):
 
-- 1 Pro user → $9
-- ~25 free users → 1 Pro user
-- 100 free users → ~4 Pro users → $36/mo
-- 400 free users → ~16 Pro users → $144/mo
+- 1 Pro user → $5
+- ~20 free users → 1 Pro user
+- 100 free users → ~5 Pro users → $25/mo
+- 400 free users → ~20 Pro users → $100/mo ✅
 
 Time to 400 free users with consistent marketing: ~60–90 days.
 

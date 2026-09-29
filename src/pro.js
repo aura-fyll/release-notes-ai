@@ -4,7 +4,7 @@
 // 4% + $0.40 per transaction. Sign up at https://polar.sh
 //
 // To enable:
-//   1. Create a product on Polar.sh (type: "Subscription", $9/month)
+//   1. Create a product on Polar.sh (type: "Subscription", $5/month)
 //   2. Copy your product ID (in the Polar dashboard URL)
 //   3. Set env var POLAR_PRODUCT_ID (or hardcode below)
 //   4. Polar handles license key generation automatically on purchase
