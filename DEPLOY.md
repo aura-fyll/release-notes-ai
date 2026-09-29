@@ -93,7 +93,7 @@ The `v1` tag is what users reference as `uses: aura-fyll/release-notes-ai@v1`. Y
 The repo is already wired to use this checkout URL (baked into `index.js`, `README.md`, `src/pro.js`):
 
 ```
-https://polar.sh/checkout?product_id=79f4e3a7-6ff9-4ee9-9d56-a423dc646587
+https://buy.polar.sh/polar_cl_2CwVdscDS617r0hrWzCPxwgfOnTyV4XxcTh270BHVA9
 ```
 
 If Polar generates a different checkout URL for your product (sometimes they use a slug-based form like `https://polar.sh/aura-fyll/products/release-notes-ai-pro`), replace the URL across the repo:
@@ -101,7 +101,7 @@ If Polar generates a different checkout URL for your product (sometimes they use
 ```bash
 find . -type f \( -name '*.md' -o -name '*.js' -o -name '*.yml' \) \
   -not -path './node_modules/*' -not -path './dist/*' -not -path './.git/*' \
-  -exec sed -i 's|https://polar.sh/checkout?product_id=79f4e3a7-6ff9-4ee9-9d56-a423dc646587|YOUR_REAL_POLAR_LINK|g' {} +
+  -exec sed -i 's|https://buy.polar.sh/polar_cl_2CwVdscDS617r0hrWzCPxwgfOnTyV4XxcTh270BHVA9|YOUR_REAL_POLAR_LINK|g' {} +
 npm run build  # rebuild dist/
 git add -A && git commit -m "chore: update Polar checkout URL"
 ```

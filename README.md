@@ -64,7 +64,7 @@ jobs:
 
 ## Upgrade to Pro — $5/month
 
-1. Buy a Pro license on Polar: **https://polar.sh/checkout?product_id=79f4e3a7-6ff9-4ee9-9d56-a423dc646587**
+1. Buy a Pro license on Polar: **https://buy.polar.sh/polar_cl_2CwVdscDS617r0hrWzCPxwgfOnTyV4XxcTh270BHVA9**
 2. Connect your Slack / Discord / Email / Twitter via Composio: https://composio.dev
 3. Add these repo secrets:
 
